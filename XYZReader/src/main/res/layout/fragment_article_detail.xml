@@ -106,6 +106,7 @@
         android:background="@drawable/add_fab_background"
         android:contentDescription="@string/action_share"
         android:elevation="@dimen/fab_elevation"
+        android:translationZ="@dimen/fab_elevation"
         android:src="@drawable/ic_share"
         android:stateListAnimator="@animator/fab_state_list_anim" />
 
