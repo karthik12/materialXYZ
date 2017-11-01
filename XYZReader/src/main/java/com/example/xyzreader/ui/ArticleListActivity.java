@@ -66,6 +66,14 @@ public class ArticleListActivity extends AppCompatActivity implements
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh_layout);
 
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                checkNetwork();
+                refresh();
+            }
+        });
+
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
 
         CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
@@ -85,6 +93,10 @@ public class ArticleListActivity extends AppCompatActivity implements
             refresh();
         }
 
+        checkNetwork();
+    }
+
+    private void checkNetwork() {
         if (!isNetworkConnected()) {
             snackbar.show();
             return;
@@ -107,10 +119,7 @@ public class ArticleListActivity extends AppCompatActivity implements
         super.onResume();
 
 
-        if (!isNetworkConnected()) {
-            snackbar.show();
-            return;
-        }
+        checkNetwork();
 
         snackbar.dismiss();
     }
